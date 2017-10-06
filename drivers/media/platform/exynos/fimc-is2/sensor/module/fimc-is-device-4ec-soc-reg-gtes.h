@@ -4020,6 +4020,9 @@ static const u32 s5k4ecgx_ISO_Auto[] = {
 	0x0F1207D0, /* SARR_uNormBrInDoor_3_ */
 	0x0F121388, /* SARR_uNormBrInDoor_4_ */
 
+	0x002A04E6,
+	0x0F12077F, /*REG_TC_DBG_AutoAlgEnBits[5] AA_Flicker Enable */
+
 	0x002A0230,
 	0x0F120000,
 
@@ -4042,6 +4045,9 @@ static const u32 s5k4ecgx_ISO_50[] = {
 	0x0F120384,		/*SARR_uNormBrInDoor_2_ */
 	0x0F1207D0,		/*SARR_uNormBrInDoor_3_ */
 	0x0F121388,		/*SARR_uNormBrInDoor_4_ */
+
+	0x002A04E6,
+	0x0F12075F,  /*REG_TC_DBG_AutoAlgEnBits[5] AA_Flicker disable */
 
 	0x002A04D6,
 	0x0F120000,		/*REG_SF_USER_FlickerQuant */
@@ -4066,6 +4072,9 @@ static const u32 s5k4ecgx_ISO_100[] = {
 	0x0F1207D0,		/*SARR_uNormBrInDoor_3_ */
 	0x0F121388,		/*SARR_uNormBrInDoor_4_ */
 
+	0x002A04E6,
+	0x0F12075F,  /*REG_TC_DBG_AutoAlgEnBits[5] AA_Flicker disable */
+
 	0x002A04D6,
 	0x0F120000,	/*REG_SF_USER_FlickerQuant */
 	0x0F120001,		/*REG_SF_USER_FlickerQuantChanged */
@@ -4089,6 +4098,9 @@ static const u32 s5k4ecgx_ISO_200[] = {
 	0x0F1208D0,		/*SARR_uNormBrInDoor_3_ */
 	0x0F121388,		/*SARR_uNormBrInDoor_4_ */
 
+	0x002A04E6,
+	0x0F12075F,  /*REG_TC_DBG_AutoAlgEnBits[5] AA_Flicker disable */
+
 	0x002A04D6,
 	0x0F120000,	/*REG_SF_USER_FlickerQuant */
 	0x0F120001,		/*REG_SF_USER_FlickerQuantChanged */
@@ -4111,6 +4123,9 @@ static const u32 s5k4ecgx_ISO_400[] = {
 	0x0F120C84,		/*SARR_uNormBrInDoor_2_ */
 	0x0F1210D0,		/*SARR_uNormBrInDoor_3_ */
 	0x0F121388,		/*SARR_uNormBrInDoor_4_ */
+
+	0x002A04E6,
+	0x0F12075F,  /*REG_TC_DBG_AutoAlgEnBits[5] AA_Flicker disable */
 
 	0x002A04D6,
 	0x0F120000,	/*REG_SF_USER_FlickerQuant */

@@ -3249,7 +3249,8 @@ static ext4_fsblk_t ext4_calculate_resv_clusters(struct ext4_sb_info *sbi)
 	resv_clusters = ext4_blocks_count(sbi->s_es) >> sbi->s_cluster_bits;
 
 	do_div(resv_clusters, 50);
-	resv_clusters = min_t(ext4_fsblk_t, resv_clusters, 4096);
+	/* Do not reserve clusters */
+	resv_clusters = min_t(ext4_fsblk_t, resv_clusters, 0);
 
 	return resv_clusters;
 }

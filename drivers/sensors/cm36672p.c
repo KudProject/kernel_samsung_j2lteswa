@@ -737,10 +737,12 @@ irqreturn_t proximity_irq_thread_fn(int irq, void *user_data)
 #endif
 
 	if (enabled) {
-		/* 0 is close, 1 is far */
-		input_report_abs(data->proximity_input_dev, ABS_DISTANCE,
-			val);
-		input_sync(data->proximity_input_dev);
+		if (val || ps_data > ps_reg_init_setting[PS_THD_HIGH][CMD] - 1) {
+			/* 0 is close, 1 is far */
+			input_report_abs(data->proximity_input_dev, ABS_DISTANCE,
+				val);
+			input_sync(data->proximity_input_dev);
+		}
 	}
 
 	wake_lock_timeout(&data->prx_wake_lock, 3 * HZ);
@@ -826,7 +828,7 @@ static int proximity_vled_onoff(struct device *dev, bool onoff)
 		data->vled = devm_regulator_get(dev, "cm36672p,vled");
 		if (IS_ERR(data->vled)) {
 			SENSOR_ERR("cannot get vled\n");
-			devm_regulator_put(data->vled);
+			data->vled = NULL;
 			return -ENOMEM;
 		}
 	}
@@ -925,6 +927,7 @@ static int proximity_regulator_onoff(struct device *dev, bool onoff)
 		data->vdd = devm_regulator_get(dev, "cm36672p,vdd");
 		if (IS_ERR(data->vdd)) {
 			SENSOR_ERR("cannot get vdd\n");
+			data->vdd = NULL;
 			return -ENOMEM;
 		}
 
@@ -937,7 +940,8 @@ static int proximity_regulator_onoff(struct device *dev, bool onoff)
 		data->vio = devm_regulator_get(dev, "cm36672p,vio");
 		if (IS_ERR(data->vio)) {
 			SENSOR_ERR("cannot get vio\n");
-			devm_regulator_put(data->vdd);
+			data->vio = NULL;
+            data->vdd = NULL;
 			return -ENOMEM;
 		}
 
